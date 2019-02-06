@@ -1,0 +1,27 @@
+ WZCBDEXP-NETAMT = ( WZCBDEXP-AMTININR +	
+                     WZCBDEXP-INTREFAMT +	
+                     WZCBDEXP-OTHREFUND ) -	
+                   ( WZCBDEXP-TBNKCHGSLC +	
+                     WZCBDEXP-RDPCLAMT +	
+                     WZCBDEXP-RDISLIABAMT +	
+                     WZCBDEXP-EEFCINLC +	
+                     WZCBDEXP-TRINTAMT +	
+                     WZCBDEXP-ODINTAMT ) .	
+                      wzcbdexp-instamt ) .	
+	
+	
+	
+	
+	
+ IF WZCBDEXP-GNLOSGL = 'G'.	
+   WZCBDEXP-NETAMT = WZCBDEXP-NETAMT + WZCBDEXP-EXDAMTLC.	
+ ELSEIF WZCBDEXP-GNLOSGL = 'L'.	
+   WZCBDEXP-NETAMT = WZCBDEXP-NETAMT - WZCBDEXP-EXDAMTLC.	
+ ENDIF.	
+	
+ IF R1 = 'X' .	
+   WZCBDEXP-NETAMT = WZCBDEXP-NETAMT - WZCBDEXP-INSTAMT .	
+ ELSEIF R2 = 'X' .	
+   WZCBDEXP-NETAMT = WZCBDEXP-NETAMT + WZCBDEXP-INSTAMT .	
+ ENDIF.	
+ IF WZCBDEXP-NETAMT LT 0.	
